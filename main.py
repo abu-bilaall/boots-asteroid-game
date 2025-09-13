@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 
 from constants import *
@@ -31,6 +33,10 @@ def main():
                 return
         screen.fill(BLACK)
         updatable.update(dt)
+        for asteroid in asteroids:
+            if (asteroid.is_colliding(player)):
+                print("Game over!")
+                sys.exit(0)
         drawable.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
